@@ -18,6 +18,7 @@ public class FilialService {
 	@Autowired
 	FilialRepository filialRepository;
 	
+	// Get All
 	public ResponseEntity<List<Filial>> getAll() {
 		try {
 			List<Filial> list = new ArrayList<Filial>();
@@ -36,6 +37,7 @@ public class FilialService {
 		}
 	}
 	
+	// Insert
 	public ResponseEntity<Filial> create(@RequestBody Filial filial){
 		try {
 			Filial _result = filialRepository.save(filial);
@@ -49,7 +51,6 @@ public class FilialService {
 	
 	// Get All
 	// Get one
-	// Insert
 	// Delete
 	// Update
 }
