@@ -37,15 +37,15 @@ public class FilialApi extends CustomErrors {
 		return filialService.getById(id);
 	}
 
-	@PostMapping("/")
-	public ResponseEntity<Filial> create(@Valid @RequestBody Filial filial) {
-		return filialService.create(filial);
-	}
-	
-	@PutMapping("/{id}")
-	public ResponseEntity<Filial> update(@PathVariable("id") long id, @Valid @RequestBody Filial filial) {
-		return filialService.update(id, filial);
-	}
+//	@PostMapping("/")
+//	public ResponseEntity<Filial> create(@Valid @RequestBody Filial filial) {
+//		return filialService.create(filial);
+//	}
+//	
+//	@PutMapping("/{id}")
+//	public ResponseEntity<Filial> update(@PathVariable("id") long id, @Valid @RequestBody Filial filial) {
+//		return filialService.update(id, filial);
+//	}
 
 	@DeleteMapping("/{id}")
 	public ResponseEntity<HttpStatus> delete(@PathVariable("id") int id) {
