@@ -7,24 +7,21 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Service;
 
+import materiais.models.NotaFiscal;
+import materiais.repositories.NotaFiscalRepository;
 
-import materiais.models.Filial;
-import materiais.repositories.FilialRepository;
-
-@Service
-public class FilialService {
+public class NotaFiscalService {
 
 	@Autowired
-	FilialRepository filialRepository;
+	NotaFiscalRepository notaFiscalRepository;
 
 	// Get All
-	public ResponseEntity<List<Filial>> getAll() {
+	public ResponseEntity<List<NotaFiscal>> getAll() {
 		try {
-			List<Filial> list = new ArrayList<Filial>();
+			List<NotaFiscal> list = new ArrayList<NotaFiscal>();
 
-			filialRepository.findAll().forEach(list::add);
+			notaFiscalRepository.findAll().forEach(list::add);
 
 			if(list.isEmpty()) {
 				return new ResponseEntity<>(HttpStatus.NO_CONTENT);
@@ -39,9 +36,9 @@ public class FilialService {
 	}
 
 	// Insert
-	public ResponseEntity<Filial> create(Filial filial){
+	public ResponseEntity<NotaFiscal> create(NotaFiscal notaFiscal){
 		try {
-			Filial _result = filialRepository.save(filial);
+			NotaFiscal _result = notaFiscalRepository.save(notaFiscal);
 
 			return new ResponseEntity<>(_result, HttpStatus.CREATED);
 		}catch(Exception e) {
@@ -50,9 +47,9 @@ public class FilialService {
 		}
 	}
 	// GetById
-	public ResponseEntity<Filial> getById(long id){
+	public ResponseEntity<NotaFiscal> getById(long id){
 		try {
-			Optional<Filial> _result = filialRepository.findById(id);
+			Optional<NotaFiscal> _result = notaFiscalRepository.findById(id);
 
 			return new ResponseEntity<>(_result.get(), HttpStatus.OK);
 		} catch (Exception e) {
@@ -63,12 +60,11 @@ public class FilialService {
 	// Delete
 	public ResponseEntity<HttpStatus> delete(long id){
 		try {
-			filialRepository.deleteById(id);
+			notaFiscalRepository.deleteById(id);
 
 			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 		} catch (Exception e) {
 			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
-	
 }

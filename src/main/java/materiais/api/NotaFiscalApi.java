@@ -13,34 +13,35 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import materiais.models.Filial;
-import materiais.services.FilialService;
+import materiais.models.NotaFiscal;
+import materiais.services.NotaFiscalService;
+
+
 
 @Controller
-@RequestMapping("/api/filial")
-public class FilialApi {
-	
+@RequestMapping("/api/NotaFiscal")
+public class NotaFiscalApi {
+
 	@Autowired
-	FilialService filialService;
+	NotaFiscalService notaFiscalService;
 	
 	@GetMapping("/")
-	public ResponseEntity<List<Filial>> getAll(){
-		return filialService.getAll();
+	public ResponseEntity<List<NotaFiscal>> getAll(){
+		return notaFiscalService.getAll();
 	}
 	
 	@PostMapping("/")
-	public ResponseEntity<Filial> create(@RequestBody Filial filial){
-		return filialService.create(filial);
+	public ResponseEntity<NotaFiscal> create(@RequestBody NotaFiscal notaFiscal){
+		return notaFiscalService.create(notaFiscal);
 	}
 	
 	@GetMapping("/{id}")
-	public ResponseEntity<Filial> getById(@PathVariable("id") long id){
-		return filialService.getById(id);
+	public ResponseEntity<NotaFiscal> getById(@PathVariable("id") long id){
+		return notaFiscalService.getById(id);
 	}
 	
 	@DeleteMapping("/{id}")
 	public ResponseEntity<HttpStatus> delete(@PathVariable("id") long id){
-		return filialService.delete(id);
+		return notaFiscalService.delete(id);
 	}
-
 }

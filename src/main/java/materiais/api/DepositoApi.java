@@ -13,34 +13,34 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import materiais.models.Filial;
-import materiais.services.FilialService;
+import materiais.models.Deposito;
+import materiais.services.DepositoService;
+
 
 @Controller
-@RequestMapping("/api/filial")
-public class FilialApi {
-	
+@RequestMapping("/api/deposito")
+public class DepositoApi {
+
 	@Autowired
-	FilialService filialService;
+	DepositoService depositoService;
 	
 	@GetMapping("/")
-	public ResponseEntity<List<Filial>> getAll(){
-		return filialService.getAll();
+	public ResponseEntity<List<Deposito>> getAll(){
+		return depositoService.getAll();
 	}
 	
 	@PostMapping("/")
-	public ResponseEntity<Filial> create(@RequestBody Filial filial){
-		return filialService.create(filial);
+	public ResponseEntity<Deposito> create(@RequestBody Deposito deposito){
+		return depositoService.create(deposito);
 	}
 	
 	@GetMapping("/{id}")
-	public ResponseEntity<Filial> getById(@PathVariable("id") long id){
-		return filialService.getById(id);
+	public ResponseEntity<Deposito> getById(@PathVariable("id") long id){
+		return depositoService.getById(id);
 	}
 	
 	@DeleteMapping("/{id}")
 	public ResponseEntity<HttpStatus> delete(@PathVariable("id") long id){
-		return filialService.delete(id);
+		return depositoService.delete(id);
 	}
-
 }

@@ -7,24 +7,24 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Service;
 
 
-import materiais.models.Filial;
-import materiais.repositories.FilialRepository;
+import materiais.models.Deposito;
+import materiais.repositories.DepositoRepository;
 
-@Service
-public class FilialService {
 
+
+
+public class DepositoService {
 	@Autowired
-	FilialRepository filialRepository;
+	DepositoRepository depositoRepository;
 
 	// Get All
-	public ResponseEntity<List<Filial>> getAll() {
+	public ResponseEntity<List<Deposito>> getAll() {
 		try {
-			List<Filial> list = new ArrayList<Filial>();
+			List<Deposito> list = new ArrayList<Deposito>();
 
-			filialRepository.findAll().forEach(list::add);
+			depositoRepository.findAll().forEach(list::add);
 
 			if(list.isEmpty()) {
 				return new ResponseEntity<>(HttpStatus.NO_CONTENT);
@@ -39,9 +39,9 @@ public class FilialService {
 	}
 
 	// Insert
-	public ResponseEntity<Filial> create(Filial filial){
+	public ResponseEntity<Deposito> create(Deposito deposito){
 		try {
-			Filial _result = filialRepository.save(filial);
+			Deposito _result = depositoRepository.save(deposito);
 
 			return new ResponseEntity<>(_result, HttpStatus.CREATED);
 		}catch(Exception e) {
@@ -50,9 +50,9 @@ public class FilialService {
 		}
 	}
 	// GetById
-	public ResponseEntity<Filial> getById(long id){
+	public ResponseEntity<Deposito> getById(long id){
 		try {
-			Optional<Filial> _result = filialRepository.findById(id);
+			Optional<Deposito> _result = depositoRepository.findById(id);
 
 			return new ResponseEntity<>(_result.get(), HttpStatus.OK);
 		} catch (Exception e) {
@@ -63,12 +63,11 @@ public class FilialService {
 	// Delete
 	public ResponseEntity<HttpStatus> delete(long id){
 		try {
-			filialRepository.deleteById(id);
+			depositoRepository.deleteById(id);
 
 			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 		} catch (Exception e) {
 			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
-	
 }
