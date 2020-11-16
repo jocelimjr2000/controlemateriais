@@ -1,6 +1,5 @@
 package materiais.models;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -11,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.NotBlank;
 
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
@@ -23,8 +23,8 @@ public class Filial {
 	private long id;
 	
 	@Column(name = "nome")
+	@NotBlank(message = "Name is mandatory")
 	private String nome;
-	
 	
 	@OneToMany(cascade = CascadeType.ALL)
 	@JoinColumn(name="IdFIial")
