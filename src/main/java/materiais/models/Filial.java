@@ -17,52 +17,48 @@ import org.hibernate.annotations.FetchMode;
 
 @Entity
 public class Filial {
-	
+
 	@Id
-	@GeneratedValue (strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
-	
-	@Column(name = "nome")
-	@NotBlank(message = "Name is mandatory")
+
+	@Column(nullable = false)
+	@NotBlank(message = "This field is required")
 	private String nome;
-	
+
 	@OneToMany(cascade = CascadeType.ALL)
-	@JoinColumn(name="IdFIial")
+	@JoinColumn(name = "IdFIial")
 	@Fetch(FetchMode.JOIN)
 	private List<Deposito> depositos;
 	
-	
-	public Filial() {}
+	// Constructor
+	public Filial() {
+	}
 
-
+	// Getters
 	public long getId() {
 		return id;
 	}
-
-
-	public void setId(long id) {
-		this.id = id;
-	}
-
 
 	public String getNome() {
 		return nome;
 	}
 
+	public List<Deposito> getDepositos() {
+		return depositos;
+	}
+
+	// Setters
+	public void setId(long id) {
+		this.id = id;
+	}
 
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
 
-
-	public List<Deposito> getDepositos() {
-		return depositos;
-	}
-
-
 	public void setDepositos(List<Deposito> depositos) {
 		this.depositos = depositos;
 	}
-	
-	
+
 }
