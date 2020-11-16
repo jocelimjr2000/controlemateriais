@@ -17,7 +17,11 @@ import org.hibernate.annotations.FetchMode;
 
 @Entity
 public class Filial {
-
+	
+	// Constructor
+	public Filial() {
+	}
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
@@ -30,10 +34,6 @@ public class Filial {
 	@JoinColumn(name = "IdFIial")
 	@Fetch(FetchMode.JOIN)
 	private List<Deposito> depositos;
-	
-	// Constructor
-	public Filial() {
-	}
 
 	// Getters
 	public long getId() {
