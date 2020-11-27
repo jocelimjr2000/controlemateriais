@@ -13,33 +13,33 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import materiais.controllers.ProdutoPerecivelController;
 import materiais.models.ProdutoPerecivel;
-import materiais.services.ProdutoPerecivelService;
 
 @Controller
 @RequestMapping("/api/produtoperecivel")
 public class ProdutoPerecivelApi {
 
 	@Autowired
-	ProdutoPerecivelService produtoPerecivelService;
+	ProdutoPerecivelController produtoPerecivelController;
 	
 	@GetMapping("/")
 	public ResponseEntity<List<ProdutoPerecivel>> getAll(){
-		return produtoPerecivelService.getAll();
+		return produtoPerecivelController.getAll();
 	}
 	
 	@PostMapping("/")
 	public ResponseEntity<ProdutoPerecivel> create(@RequestBody ProdutoPerecivel produtoPerecivel){
-		return this.produtoPerecivelService.create(produtoPerecivel);
+		return this.produtoPerecivelController.create(produtoPerecivel);
 	}
 	
 	@GetMapping("/{id}")
 	public ResponseEntity<ProdutoPerecivel> getById(@PathVariable("id") long id){
-		return produtoPerecivelService.getById(id);
+		return produtoPerecivelController.getById(id);
 	}
 	
 	@DeleteMapping("/{id}")
 	public ResponseEntity<HttpStatus> delete(@PathVariable("id") long id){
-		return produtoPerecivelService.delete(id);
+		return produtoPerecivelController.delete(id);
 	}
 }

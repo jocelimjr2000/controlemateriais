@@ -13,9 +13,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import materiais.controllers.FuncionarioController;
 import materiais.models.Funcionario;
-import materiais.services.FuncionarioService;
-
 
 
 @Controller
@@ -23,25 +22,25 @@ import materiais.services.FuncionarioService;
 public class FuncionarioApi {
 
 	@Autowired
-	FuncionarioService funcionarioService;
+	FuncionarioController funcionarioController;
 	
 	@GetMapping("/")
 	public ResponseEntity<List<Funcionario>> getAll(){
-		return funcionarioService.getAll();
+		return funcionarioController.getAll();
 	}
 	
 	@PostMapping("/")
 	public ResponseEntity<Funcionario> create(@RequestBody Funcionario funcionario){
-		return funcionarioService.create(funcionario);
+		return funcionarioController.create(funcionario);
 	}
 	
 	@GetMapping("/{id}")
 	public ResponseEntity<Funcionario> getById(@PathVariable("id") long id){
-		return funcionarioService.getById(id);
+		return funcionarioController.getById(id);
 	}
 	
 	@DeleteMapping("/{id}")
 	public ResponseEntity<HttpStatus> delete(@PathVariable("id") long id){
-		return funcionarioService.delete(id);
+		return funcionarioController.delete(id);
 	}
 }

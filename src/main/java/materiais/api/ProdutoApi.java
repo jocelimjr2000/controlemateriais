@@ -13,33 +13,34 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import materiais.controllers.ProdutoController;
 import materiais.models.Produto;
-import materiais.services.ProdutoService;
+
 
 @Controller
 @RequestMapping("/api/Produto")
 public class ProdutoApi {
 
 	@Autowired
-	ProdutoService produtoService;
+	ProdutoController produtoController;
 	
 	@GetMapping("/")
 	public ResponseEntity<List<Produto>> getAll(){
-		return produtoService.getAll();
+		return produtoController.getAll();
 	}
 	
 	@PostMapping("/")
 	public ResponseEntity<Produto> create(@RequestBody Produto produto){
-		return produtoService.create(produto);
+		return produtoController.create(produto);
 	}
 	
 	@GetMapping("/{id}")
 	public ResponseEntity<Produto> getById(@PathVariable("id") long id){
-		return produtoService.getById(id);
+		return produtoController.getById(id);
 	}
 	
 	@DeleteMapping("/{id}")
 	public ResponseEntity<HttpStatus> delete(@PathVariable("id") long id){
-		return produtoService.delete(id);
+		return produtoController.delete(id);
 	}
 }

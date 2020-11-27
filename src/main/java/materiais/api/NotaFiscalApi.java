@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import materiais.controllers.NotaFiscalController;
 import materiais.models.NotaFiscal;
-import materiais.services.NotaFiscalService;
 
 
 
@@ -23,25 +23,25 @@ import materiais.services.NotaFiscalService;
 public class NotaFiscalApi {
 
 	@Autowired
-	NotaFiscalService notaFiscalService;
+	NotaFiscalController notaFiscalController;
 	
 	@GetMapping("/")
 	public ResponseEntity<List<NotaFiscal>> getAll(){
-		return notaFiscalService.getAll();
+		return notaFiscalController.getAll();
 	}
 	
 	@PostMapping("/")
 	public ResponseEntity<NotaFiscal> create(@RequestBody NotaFiscal notaFiscal){
-		return notaFiscalService.create(notaFiscal);
+		return notaFiscalController.create(notaFiscal);
 	}
 	
 	@GetMapping("/{id}")
 	public ResponseEntity<NotaFiscal> getById(@PathVariable("id") long id){
-		return notaFiscalService.getById(id);
+		return notaFiscalController.getById(id);
 	}
 	
 	@DeleteMapping("/{id}")
 	public ResponseEntity<HttpStatus> delete(@PathVariable("id") long id){
-		return notaFiscalService.delete(id);
+		return notaFiscalController.delete(id);
 	}
 }

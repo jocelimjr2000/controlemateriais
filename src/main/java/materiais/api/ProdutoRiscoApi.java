@@ -13,33 +13,33 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import materiais.controllers.ProdutoRiscoController;
 import materiais.models.ProdutoRisco;
-import materiais.services.ProdutoRiscoService;
 
 @Controller
 @RequestMapping("/api/produtorisco")
 public class ProdutoRiscoApi {
 
 	@Autowired
-	ProdutoRiscoService produtoRiscoService;
+	ProdutoRiscoController produtoRiscoController;
 	
 	@GetMapping("/")
 	public ResponseEntity<List<ProdutoRisco>> getAll(){
-		return produtoRiscoService.getAll();
+		return produtoRiscoController.getAll();
 	}
 	
 	@PostMapping("/")
 	public ResponseEntity<ProdutoRisco> create(@RequestBody ProdutoRisco produtoRisco){
-		return produtoRiscoService.create(produtoRisco);
+		return produtoRiscoController.create(produtoRisco);
 	}
 	
 	@GetMapping("/{id}")
 	public ResponseEntity<ProdutoRisco> getById(@PathVariable("id") long id){
-		return produtoRiscoService.getById(id);
+		return produtoRiscoController.getById(id);
 	}
 	
 	@DeleteMapping("/{id}")
 	public ResponseEntity<HttpStatus> delete(@PathVariable("id") long id){
-		return produtoRiscoService.delete(id);
+		return produtoRiscoController.delete(id);
 	}
 }
