@@ -1,9 +1,13 @@
 package materiais.models;
 
+import java.util.Calendar;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
@@ -15,18 +19,21 @@ public class NotaFiscal {
 	@Id
 	private long numero;
 
-
+	@Temporal(TemporalType.TIMESTAMP)
+	private Calendar dataCompra;
 
 	private int quantidadeComprada;
 
 	private Double valorCompra;
-
-	private String fornecedor;
-
-	@ManyToOne
-	@JoinColumn(name="cpf_Funcionario")
-	@Fetch(FetchMode.JOIN)
-	private Funcionario funcionario;
+	
+	
+	public NotaFiscal () {}
+	
+	public NotaFiscal(int qtdeComprada, Double valorCompra) {
+		this.quantidadeComprada = qtdeComprada;
+		this.valorCompra = valorCompra;
+	}
+	
 
 	public long getNumero() {
 		return numero;
@@ -47,17 +54,11 @@ public class NotaFiscal {
 	public void setValorCompra(Double valorCompra) {
 		this.valorCompra = valorCompra;
 	}
-	public String getFornecedor() {
-		return fornecedor;
+	public Calendar getDataCompra() {
+		return dataCompra;
 	}
-	public void setFornecedor(String fornecedor) {
-		this.fornecedor = fornecedor;
-	}
-	public Funcionario getFuncionario() {
-		return funcionario;
-	}
-	public void setFuncionario(Funcionario funcionario) {
-		this.funcionario = funcionario;
+	public void setDataCompra(Calendar dataCompra) {
+		this.dataCompra = dataCompra;
 	}
 
 

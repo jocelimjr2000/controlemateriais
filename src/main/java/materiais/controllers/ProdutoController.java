@@ -45,5 +45,13 @@ public class ProdutoController {
 		}
 		return false;
 	}
+	public Produto verifyQuantity(Produto produto, int qtdeInserida){
+		if (produto.getQuantidadeArmazenada() + qtdeInserida <= produto.getQuantidadeMaxima()) {
+			produto.setQuantidadeArmazenada(produto.getQuantidadeArmazenada() + qtdeInserida);
+			return produto;
+		} else {
+			return null;
+		}
+	}
 
 }
